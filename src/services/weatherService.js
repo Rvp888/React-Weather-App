@@ -6,7 +6,16 @@ const getWeatherData = (infoType, searchParams) => {
     const url = new URL(BASE_URL + "/" + infoType);
     url.search = new URLSearchParams({...searchParams, appid: API_KEY});
 
-    return fetch(url).then((res) => res.json()).then((data) => data);
+    return fetch(url).then((res) => res.json());
 }
 
-export default getWeatherData;
+const formatCurrentWeather = (data) => {
+    const {
+        coord: {lat, lon},
+        main: { temp, feels_like, temp_min, temp_max, humidity }
+    } = data;
+}
+
+const getFormattedWeatherData = async(searchParams) => {
+    const formattedCurrentWeather = await getWeatherData("weather", searchParams).then(formatCurrentWeather);
+}
