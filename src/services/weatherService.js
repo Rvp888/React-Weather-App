@@ -58,10 +58,10 @@ const getFormattedWeatherData = async(searchParams) => {
         lat,
         lon,
         exclude: "current, minutely, alerts",
-        units: searchParams.units
+        units: searchParams.units,
     }).then(formatForecastWeather)
 
-    return formattedCurrentWeather;
+    return { ...formattedCurrentWeather, ...formattedForecastWeather };
 }
 
 
