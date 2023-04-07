@@ -20,6 +20,8 @@ const formatCurrentWeather = (data) => {
         wind: { speed }
     } = data;
 
+    const { main: details, icon } = weather[0];
+
     return { lat, lon, temp, feels_like, temp_min, temp_max, humidity, name, dt, country, sunrise, sunset, weather, speed }
 }
 
