@@ -8,6 +8,7 @@ import TemperatureAndDetails from './components/TemperatureAndDetails';
 import Forecast from './components/Forecast';
 import getFormattedWeatherData from './services/weatherService';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 
@@ -30,16 +31,22 @@ function App() {
   
 
   return (
-    <div className='mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-xl
-    shadow-gray-400'>
+    <div
+      className="mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-xl
+    shadow-gray-400"
+    >
       <TopButtons />
       <Inputs />
 
-      <TimeAndLocation />
-      <TemperatureAndDetails />
+      {weather && (
+        <div>
+          <TimeAndLocation weather={weather} />
+          <TemperatureAndDetails weather={weather} />
 
-      <Forecast title="hourly forecast" />
-      <Forecast title="daily forecast" />
+          <Forecast title="hourly forecast" />
+          <Forecast title="daily forecast" />
+        </div>
+      )}
     </div>
   );
 }
